@@ -26,13 +26,11 @@
 	Jon-Carlos Rivera - imbcmdth@hotmail.com
 ******************************************************************************/
 
-module.exports = RTree;
-
 /**
  * RTree - A simple r-tree structure for great results.
  * @constructor
  */
-var RTree = function (width) {
+function RTree(width) {
 	// Variables to control tree-dimensions
 	var _Min_Width = 3; // Minimum width of any node before a merge
 	var _Max_Width = 6; // Maximum width of any node before a split
@@ -812,3 +810,5 @@ RTree.Rectangle.make_MBR = function (nodes, rect) {
 
 	return (rect);
 };
+
+module.exports = RTree;
