@@ -25,7 +25,7 @@
 
 	Jon-Carlos Rivera - imbcmdth@hotmail.com
 ******************************************************************************/
-
+module.exports = RTree;
 /**
  * RTree - A simple r-tree structure for great results.
  * @constructor
@@ -810,5 +810,3 @@ RTree.Rectangle.make_MBR = function (nodes, rect) {
 
 	return (rect);
 };
-
-module.exports = RTree;
