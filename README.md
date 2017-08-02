@@ -8,7 +8,7 @@ Below is a graphical example of a a 2D RTree:
 ![Example of a 2D RTree](R-tree-2D.png)
 
 
-This libray can now be installed via npm with the following command:
+This library can now be installed via npm with the following command:
 
 ```bash
 npm install --save https://github.com/HGNC/RTree.git#release
