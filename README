@@ -1,5 +1,10 @@
 MIT Licensed
 
-A non-recursive R-Tree library in pure JavaScript with no dependencies.
+A non-recursive R-Tree library in pure JavaScript with no dependencies. This library
+has been refactored by Kristian Gray <https://github.com/KrisGray> into typescript
+and utilises OO principals. This libray can now be installed via npm with the following
+command:
+
+npm install --save https://github.com/HGNC/RTree.git
 
 TODO: Make More ReadMe

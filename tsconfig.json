@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "target": "es5",
+    "lib": ["es2015", "es2015.iterable", "dom"]
+  },
+  "files": [
+    "src/rtree.ts"
+  ]
+}
