@@ -1,2 +1,6 @@
 node_modules
 dist
+srv/JSSpec.css
+srv/JSSpec.js
+srv/diff_match_patch.js
+srv/rtree.js

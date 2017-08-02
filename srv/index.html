@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>JSSpec results</title>
+	<link rel="stylesheet" type="text/css" href="JSSpec.css" />
+	<script type="text/javascript" src="diff_match_patch.js"></script>
+	<script type="text/javascript" src="JSSpec.js"></script>
+	<script type="text/javascript" src="rtree.js"></script>
+	<script type="text/javascript">
+		// <![CDATA[
+		var rt = new RTree();
+
+		describe('RTree Creation', {
+			'Insert': function() {
+				rt.insert(
+					{
+						x: 1,
+						y: 1,
+						w: 4,
+						h: 4
+					},
+					"JUST A TEST OBJECT! 1,1,4,4"
+				);
+
+				rt.insert(
+					{
+						x: 2,
+						y: 3,
+						w: 1,
+						h: 1
+					},
+					"JUST A TEST OBJECT! 2,3,1,1"
+				);
+
+				rt.insert(
+					{
+						x: 3,
+						y: 2,
+						w: 1,
+						h: 1
+					},
+					"JUST A TEST OBJECT! 3,2,1,1"
+				);
+
+				rt.insert(
+					{
+						x: 6,
+						y: 4,
+						w: 1,
+						h: 1
+					},
+					"JUST A TEST OBJECT! 6,4,1,1"
+				);
+
+				rt.insert(
+					{
+						x: 4,
+						y: 1,
+						w: 2,
+						h: 1
+					},
+					"JUST A TEST OBJECT! 4,1,2,1"
+				);
+			},
+			'Check to see if inserts are stored': function() {
+				value_of(rt.nodes.length).should_be(5);
+			}
+		});
+		describe('RTree Searching', {
+			'Out-of-Bounds Search': function () {
+				value_of(rt.search({
+					x: 1,
+					y: 8,
+					w: 2,
+					h: 1
+				}).length).should_be(0);
+			},
+			'In-Bounds Search 1': function () {
+				value_of(rt.search({
+					x: 1,
+					y: 1,
+					w: 4,
+					h: 4
+				}).length).should_be(4);
+			},
+			'In-Bounds Search 2': function () {
+				value_of(rt.search({
+					x: 1,
+					y: 1,
+					w: 6,
+					h: 8
+				}).length).should_be(5);
+			},
+		});
+
+		var g_len = 0;
+		describe('RTree Deletion', {
+			'Delete 1': function () {
+				g_len += rt.remove({
+					x: 1,
+					y: 1,
+					w: 3,
+					h: 4
+				}).length;
+				value_of(g_len).should_be(3);
+			},
+			'Delete 2': function () {
+				g_len += rt.remove({
+					x: 1,
+					y: 1,
+					w: 6,
+					h: 4
+				}).length;
+				value_of(g_len).should_be(5);
+			},
+			'Check empty': function () {
+				value_of(rt.nodes.length).should_be(0);
+			}
+			
+		});
+		
+		// ]]>
+	</script>
+</head>
+
+<body></body>
+
+</html>

@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/HGNC/RTree#readme",
   "devDependencies": {
+    "browser-sync": "^2.18.13",
     "browserify": "^14.4.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",

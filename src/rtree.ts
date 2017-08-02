@@ -314,29 +314,29 @@ export default class RTree {
 	 * @private
 	 */
 	private search_subtree(rect: RectLike, return_node: boolean, return_array: RTree[]): RTree[] {
-		const hit_stack: any[] = []; // Contains the elements that overlap
-
+		const hitStack: any[] = [];
 		if (!Rectangle.overlap_rectangle(rect, this)){
-      return return_array;
+			return return_array;
     }
-			
-		hit_stack.push(this.nodes);
+		const nodes = this.nodes;
+		hitStack.push(nodes);
 		do {
-			const nodes = hit_stack.pop();
+			const nodes = hitStack.pop();
 			for (let i = nodes.length - 1; i >= 0; i--) {
 				const ltree = nodes[i];
 				if (Rectangle.overlap_rectangle(rect, ltree)) {
 					if ("nodes" in ltree) { // Not a Leaf
-						hit_stack.push(ltree.nodes);
+						hitStack.push(ltree.nodes);
 					} else if ("leaf" in ltree) { // A Leaf !!
-						if (!return_node)
+						if (!return_node){
 							return_array.push(ltree.leaf);
-						else
+						} else {
 							return_array.push(ltree);
+						}
 					}
 				}
 			}
-		} while (hit_stack.length > 0);
+		} while (hitStack.length > 0);
 		return return_array;
   }
   
@@ -348,12 +348,12 @@ export default class RTree {
 		let bc; // Best Current node
 		// Initial insertion is special because we resize the Tree and we don't
 		// care about any overflow (seriously, how can the first object overflow?)
-		if (this.nodes.length == 0) {
+		if (typeof(this.nodes) === "undefined" || this.nodes.length === 0) {
 			this.x = node.x;
 			this.y = node.y;
 			this.w = node.w;
 			this.h = node.h;
-			this.nodes.push(node);
+			this.nodes = [node];
 			return;
 		}
 
@@ -538,12 +538,14 @@ export default class RTree {
 		for (const my_key in return_stack) {
 			return_string += "\nvar " + my_key + " = function(){" + return_stack[my_key] + " return(main_tree);};";
 		}
+		console.log(return_string);
 		return return_string;
   }
   
-  remove(rect: RectLike, obj: any) {
-		if (arguments.length < 1)
-			throw "Wrong number of arguments. RT.remove requires at least a bounding rectangle."
+  remove(rect: RectLike, obj: any): RTree[] {
+		if (arguments.length < 1){
+			throw "Wrong number of arguments. RT.remove requires at least a bounding rectangle.";
+		}
 
 		switch (arguments.length) {
 			case 1:
@@ -554,10 +556,12 @@ export default class RTree {
 		if (arguments[1] === false) { // Do area-wide delete
 			var numberdeleted = 0;
 			var ret_array = [];
+			let i = 0;
 			do {
 				numberdeleted = ret_array.length;
 				ret_array = ret_array.concat(this.remove_subtree(arguments[0], arguments[1]));
-			} while (numberdeleted != ret_array.length);
+				i++;
+			} while (numberdeleted !== ret_array.length)//(numberdeleted !== ret_array.length);
 			return ret_array;
 		} else { // Delete a specific item
 			return this.remove_subtree(arguments[0], arguments[1]);
@@ -567,7 +571,7 @@ export default class RTree {
   /* non-recursive insert function
 	 * [] = RTree.insert(rectangle, object to insert)
 	 */
-	insert(rect: RectLike, obj: any) {
+	insert(rect: RectLike, obj: any): void{
 		if (arguments.length < 2)
 			throw "Wrong number of arguments. RT.Insert requires at least a bounding rectangle and an object."
     const rTree = new RTree();
@@ -576,7 +580,7 @@ export default class RTree {
     rTree.w = rect.w;
     rTree.h = rect.h;
     rTree.leaf = obj;
-		return (this.insert_subtree(rTree));
+		this.insert_subtree(rTree);
 	};
   
 }
