@@ -5,6 +5,6 @@ has been refactored by Kristian Gray <https://github.com/KrisGray> into typescri
 and utilises OO principals. This libray can now be installed via npm with the following
 command:
 
-npm install --save https://github.com/HGNC/RTree.git
+npm install --save https://github.com/HGNC/RTree.git#release
 
 TODO: Make More ReadMe
