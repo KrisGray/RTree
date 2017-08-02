@@ -1,11 +1,18 @@
+# RTree
 A non-recursive R-Tree library for 2D rectangles in pure JavaScript with no dependencies. This library
 has been refactored by Kristian Gray <https://github.com/KrisGray> into typescript
-and utilises OO principals. This libray can now be installed via npm with the following
-command:
+and utilises OO principals.
+
+Below is a graphical example of a a 2D RTree:
+
+![Example of a 2D RTree](R-tree-2D.png)
+
+
+This libray can now be installed via npm with the following command:
 
 npm install --save https://github.com/HGNC/RTree.git#release
 
-How to use:
+## How to use:
 
 ```Typescript
 // create a new rtree object
