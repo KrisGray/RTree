@@ -1,10 +1,22 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "noImplicitAny": false,
+    "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
     "target": "es5",
-    "lib": ["es2015", "es2015.iterable", "dom"]
+    "lib": ["es2015", "es2015.iterable", "dom"],
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    }
   },
   "files": [
-    "src/rtree.ts"
+    "src/rtree.ts",
+    "src/rtree/rect-like.ts",
+    "src/rtree/rectangle.ts"
   ]
 }
