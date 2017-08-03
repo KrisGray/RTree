@@ -1,4 +1,5 @@
-import { Rectangle, RectLike } from './rtree/rectangle';
+import RectLike from './rtree/rect-like';
+import Rectangle from './rtree/rectangle';
 
 export default class RTree {
   private Min_Width = 3; // Minimum width of any node before a merge
@@ -13,13 +14,14 @@ export default class RTree {
   leaf: any;
   load: any;
   target: any;
+  
 
   private static isArray(o: any): boolean {
     return Object.prototype.toString.call(o) === '[object Array]';
   };
 
   constructor(width?: number) {
-    if (!isNaN(width)) {
+    if (width && !isNaN(width)) {
       this.Min_Width = Math.floor(width / 2.0);
       this.Max_Width = width;
     }

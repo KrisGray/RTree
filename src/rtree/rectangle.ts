@@ -1,15 +1,6 @@
-export interface RectLike {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  x2?: number;
-  y2?: number;
-  target?: any;
-  
-}
+import RectLike from './rect-like';
 
-export class Rectangle {
+export default class Rectangle {
   private _x: number = 0;
 	private _y: number = 0;
 	private _w: number = 0;

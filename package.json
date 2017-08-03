@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "gulp --gulpfile ./gulpfile.js"
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,6 @@
     "browserify": "^14.4.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
-    "gulp-typescript": "^3.2.1",
     "tsify": "^3.0.1",
     "typescript": "^2.4.2",
     "vinyl-source-stream": "^1.1.0"
