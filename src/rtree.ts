@@ -1,4 +1,5 @@
-import { Rectangle, RectLike } from './rtree/rectangle';
+import RectLike from './rtree/rect-like';
+import Rectangle from './rtree/rectangle';
 
 export default class RTree {
   private Min_Width = 3; // Minimum width of any node before a merge
